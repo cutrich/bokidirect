@@ -89,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // create a new table using username_employee table
         $employee = $username."_employee";
-
+//test
         // prepare statement
         $sql = "CREATE TABLE IF NOT EXISTS $employee (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, employee VARCHAR(50) NOT NULL UNIQUE, created DATETIME DEFAULT CURRENT_TIMESTAMP)";
         if($stmt = mysqli_prepare($link, $sql)){
@@ -117,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }"
+        .wrapper{ width: 350px; text-align: center; }"
     </style>
 </head>
 <body>
