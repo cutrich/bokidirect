@@ -38,8 +38,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	      }
 
 	      .div-center {
-	          width: 400px;
-	          height: 800px;
+
 	          background-color: #fff;
 	          position: absolute;
 	          left: 0;

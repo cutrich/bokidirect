@@ -100,11 +100,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     <style type="text/css">
         body{ font: 14px sans-serif; }
-        .wrapper{ 
-            width: 350px; 
-            text-align: center;
-        }
-
         .back {
           background: #e2e2e2;
           width: 100%;
