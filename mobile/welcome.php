@@ -38,8 +38,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	      }
 
 	      .div-center {
-	          width: 400px;
-	          height: 800px;
+	          width: 1366px;
+	          height: 768px;
 	          background-color: #fff;
 	          position: absolute;
 	          left: 0;
@@ -66,34 +66,34 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
 	 
 
-	<div class="div-center">
-		
-		<h3>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>
+		       <div class="div-center">
+		       	 
+			       <h3>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>
 
 
-			<span class="pull-right">
-				<div class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-						<i class="glyphicon glyphicon-list" style="font-size:20px;"></i>
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu pull-right">
-						<li><a href="welcome.php">Home</a></li>
-						<li><a href="employee.php">Employee</a></li>
-						<li><a href="input.php">Data Entry</a></li>
-						<li><a href="setting.php">Setting</a></li>
-						<li><a href="reset-password.php">Reset Password</a></li>
-						<li><a href="logout.php">Log Out</a></li>
-					</ul>
+		        	<span class="pull-right">
+			        	<div class="dropdown">
+					    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+					    <i class="glyphicon glyphicon-list" style="font-size:20px;"></i>
+					    <span class="caret"></span>
+					    </button>
+					    <ul class="dropdown-menu pull-right">
+					      <li><a href="welcome.php">Home</a></li>
+					      <li><a href="employee.php">Employee</a></li>
+					      <li><a href="input.php">Data Entry</a></li>
+					      <li><a href="setting.php">Setting</a></li>
+					      <li><a href="reset-password.php">Reset Password</a></li>
+					      <li><a href="logout.php">Log Out</a></li>
+					    </ul>
 
-				</div>
-			</span>
-		</h3>
-		<hr />
-		
-	</div>
+					</div>
+				</span>
+				</h3>
+				<hr />
+					  
+		        </div>
 	
-</div>
+		        	</div>
 
 		 
 		    
