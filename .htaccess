@@ -1,1 +1,7 @@
-DirectoryIndex login.php
+DirectoryIndex login.php index.php
+RewriteCond %{HTTP_HOST} ^bokidirect\.com$
+RewriteRule ^(.*)$ http://www.bokidirect.com/$1 [R=301]
+RewriteEngine on
+RewriteRule ^oranges.html$ welcome.php
+RewriteRule ^apple.html$ employee.php
+
