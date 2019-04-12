@@ -3,8 +3,9 @@
 require_once "config.php";
 
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username = $password = $confirm_password = $code_password = "";
+$username_err = $password_err = $confirm_password_err = $code_password_err = "";
+$passcode = "abc";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -61,8 +62,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
+    if(empty(trim($_POST["code_password"]))){
+        $code_password_err = "Please enter passcode for new account.";
+    } else{
+        $code_password = trim($_POST["code_password"]);
+        if(empty($code_password_err) && ($code_password != $passcode)){
+            $code_password_err = "Passcode did not match.";
+        }
+    }
+
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($code_password_err)){
 
         // Prepare an insert statement
         $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
@@ -111,41 +121,81 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">  
+    
     <style type="text/css">
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; text-align: center; }"
-    </style>
+        .back {
+          background: #e2e2e2;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+      }
+
+      .div-center {
+          width: 400px;
+          height: 400px;
+          background-color: #fff;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          max-width: 100%;
+          max-height: 100%;
+          overflow: auto;
+          padding: 1em 2em;
+          border-bottom: 2px solid #ccc;
+          display: table;
+      }
+
+      div.content {
+          display: table-cell;
+          vertical-align: middle;
+      }
+  </style>
 </head>
 <body>
-    <div class="wrapper">
-        <h2>Sign Up</h2>
-        <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-                <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-                <span class="help-block"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-default" value="Reset">
-            </div>
-            <p>Already have an account test? <a href="login.php">Login here</a>.</p>
-        </form>
+    <<div class="back">
+      <div class="div-center">
+        <div class="content">
+            <h3>Sign Up</h3>
+            <p>Please fill this form to create an account.</p>
+            <hr />
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                    <span class="help-block"><?php echo $username_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                    <span class="help-block"><?php echo $password_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                    <span class="help-block"><?php echo $confirm_password_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                    <label>Pass Code</label>
+                    <input type="password" name="code_password" class="form-control" value="<?php echo $code_password; ?>">
+                    <span class="help-block"><?php echo $code_password_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                    <input type="reset" class="btn btn-default" value="Reset">
+                </div>
+                <p>Already have an account?<a href="login.php">Login here</a>.</p>
+            </form>
+        </div>
     </div>
+</div>
 </body>
 </html>

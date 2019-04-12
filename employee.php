@@ -143,8 +143,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		           </h1>
 		        </div>			
 				<div class="container">
+
 				  <div class="row">
-				    <div class="col-sm-4">
+				    <div class="col-sm">
 				      <div class="wrapper">
 					        <h2>Add new employee</h2>
 					        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -160,7 +161,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					        </form>
 					</div> 
 				    </div>
-				    <div class="col-sm-4">
+				</div>
+				<div class="row">
+				    <div class="col-sm">
 				       <table class="fixed_header">
 							  <thead>
 							    <tr> <h2>
