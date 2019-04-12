@@ -79,10 +79,40 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
+         .back {
+          background: #e2e2e2;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+      }
+      .div-center {
+          width: 400px;
+          height: 400px;
+          background-color: #fff;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          max-width: 100%;
+          max-height: 100%;
+          overflow: auto;
+          padding: 1em 2em;
+          border-bottom: 2px solid #ccc;
+          display: table;
+      }
+      div.content {
+          display: table-cell;
+          vertical-align: middle;
+      }
     </style>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="back">
+      <div class="div-center">
+        <div class="content">
         <h2>Reset Password</h2>
         <p>Please fill out this form to reset your password.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
@@ -101,6 +131,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <a class="btn btn-link" href="welcome.php">Cancel</a>
             </div>
         </form>
-    </div>    
+    		</div> 
+		</div>
+	</div>
 </body>
 </html>
