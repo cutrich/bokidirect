@@ -1,11 +1,23 @@
 <?php
+
+
+session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+
+// Include config file
+require_once "config.php";
+
 // Process delete operation after confirmation
 if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Include config file
-    require_once "config.php";
     
     // Prepare a delete statement
-    $sql = "DELETE FROM employees WHERE id = ?";
+    $sql = "DELETE FROM ".$_SESSION["username"]."_employee WHERE id = ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
@@ -41,21 +53,24 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>View Record</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <style type="text/css">
-        .wrapper{
-            width: 500px;
-            margin: 0 auto;
-        }
+        body{ font: 14px sans-serif; text-align: left; }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
+    
+        <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
                     <div class="page-header">
                         <h1>Delete Record</h1>
                     </div>
@@ -70,6 +85,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         </div>
                     </form>
                 </div>
+                <div class="col-sm-4"></div>
             </div>        
         </div>
     </div>
