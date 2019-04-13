@@ -106,7 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       if (mysqli_query($link, $sql)) {
         $card = $cash = $tip = $supply = "";
-        echo "New record created successfully";
+        $msg= "New record created successfully";
+        echo '<script type="text/javascript">alert("' . $msg. '")</script>';
       } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
       }
@@ -143,16 +144,16 @@ function get_options($select) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>Welcome</title>
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-    <script src="/jquery/dist/jquery.min.js"></script>
-    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <title>Add Record</title>
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <script src="/jquery/dist/jquery.min.js"></script>
+  <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  <script>
     $(document).ready(function(){
       var date_input=$('input[name="date"]'); //our date input has the name "date"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
@@ -168,86 +169,90 @@ function get_options($select) {
     })
   </script>
 
-<style type="text/css">
-body{ font: 14px sans-serif; text-align: center; }
-.dropdown {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  padding-right: 50px;
-}
+  <style type="text/css">
+    body{ font: 14px sans-serif; text-align: left; }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      padding-right: 0px;
+    }
+    .dropdown-menu {
+      font-size: 20px;
+    }
+    .page-header h2{
+      margin-top: 0;
+    }
 
-</style>
+  </style>
 </head>
 <body>
-				<div class="pull-center">
-		        <div class="pull-right">
-			        	<div class="dropdown">
-					    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-					    <i class="glyphicon glyphicon-list" style="font-size:20px;"></i>
-					    <span class="caret"></span>
-					    </button>
-					    <ul class="dropdown-menu pull-right">
-					      <li><a href="welcome.php">Home</a></li>
-					      <li><a href="employee.php">Employee</a></li>
-					      <li><a href="input.php">Data Entry</a></li>
-					      <li><a href="setting.php">Setting</a></li>
-					      <li><a href="reset-password.php">Reset Password</a></li>
-					      <li><a href="logout.php">Log Out</a></li>
-					    </ul>
-					  </div>
-		        </div>
-		           </h1>
-		        </div>
+  <div class="container">
+    <div class="col-sm-4"> </div>
+    <div class="col-sm-4">
+      <div class="page-header clearfix">
+        <h2 class="pull-left"> Add Record </h2>
 
-<h1>Add Record</h1>
-<p><span class="error">* required field</span></p>
-			<div class="container">
-			  <div class="row">
-			    <div class="col-sm-4">
+        <div class="pull-right">
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+              <i class="glyphicon glyphicon-list" style="font-size:12px;"></i>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu pull-right">
+              <li><a href="welcome.php">Home</a></li>
+              <li><a href="index.php">Employee</a></li>
+              <li><a href="input.php">Add Record</a></li>
+              <li><a href="">Setting</a></li>
+              <li><a href="reset-password.php">Reset Password</a></li>
+              <li><a href="logout.php">Log Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="form-group">
+          <div id="filterDate2">
 
-			    </div>
-			    <div class="col-sm-4">
-			      <div class="wrapper">
-			      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-			      	<div class="form-group">
-                <div id="filterDate2">
+            <label for="input_name">Name</label>
+            <select class="form-control" id="input_name" name="name" >
+              <?php echo get_options($selected); ?>
+            </select>
+            <span class="error"><?php echo $nameErr;?></span>
+            <br>
+            <label for="input_cash">Cash</label>
+            <input type="tel" id="input_cash" name="cash" class="form-control" value="<?php echo $cash;?>">
+            <span class="error"><?php echo $cashErr;?></span>
+            <br>
+            <label for="input_card">Card</label>
+            <input type="tel" id="input_card" name="card" class="form-control" value="<?php echo $card;?>">
+            <span class="error"><?php echo $cardErr;?></span>
+            <br>
+            <label for="input_tip">Tip</label>
+            <input type="tel" name="tip" id="input_tip" class="form-control" value="<?php echo $tip;?>">
+            <span class="error"><?php echo $tipErr;?></span>
+            <br>
+            <label for="input_supply">Supply</label>
+            <input type="tel" name="supply" id="input_supply" class="form-control" value="<?php echo $supply;?>">
+            <span class="error"><?php echo $supplyErr;?></span>
+            <br>
+            <label for="date">Date</label>
+            <input type="text" name="date" class="form-control" id="date" value="<?php echo $date;?>">
+            <span class="error"><?php echo $dateErr;?></span>
+            <br>
+            <input type="submit" name="submit" class="btn btn-primary" value="Save">
+            <input type="submit" name="submit" class="btn btn-primary" value="Clear">
+          </div>
+        </div>
+      </form>
+    </div>
 
-						  Name:
-              <br>
-              <select class="form-control" name="name" >
-                <?php echo get_options($selected); ?>
-              </select>
-              <span class="error">* <?php echo $nameErr;?></span>
-						  <br>
-						  Cash: <input type="tel" name="cash" class="form-control" value="<?php echo $cash;?>">
-						  <span class="error">* <?php echo $cashErr;?></span>
-						  <br>
-						  Card: <input type="tel" name="card" class="form-control" value="<?php echo $card;?>">
-						  <span class="error"><?php echo $cardErr;?></span>
-						  <br>
-						  Tip:    <input type="tel" name="tip" class="form-control" value="<?php echo $tip;?>">
-						  <span class="error"><?php echo $tipErr;?></span>
-						  <br>
-						  Supply: <input type="tel" name="supply" class="form-control" value="<?php echo $supply;?>">
-						  <span class="error"><?php echo $supplyErr;?></span>
-						  <br>
-              Date: <input type="text" name="date" class="form-control" id="date" value="<?php echo $date;?>">
-						  <span class="error"><?php echo $dateErr;?></span>
-						  <br>
-						  <input type="submit" name="submit" class="btn btn-primary" value="Save">
-              <input type="submit" name="submit" class="btn btn-primary" value="Clear">
-                  </div>
-					     </div>
-						</form>
-					</div>
-				</div>
-				<div class="col-sm-4">
+    <div class="col-sm-4">
 
-				</div>
+    </div>
 
-				</div>
-			</div>
+  </div>
+
 
 
 

@@ -103,7 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
                     <div class="page-header">
-                        <h2>Create Record</h2>
+                        <h2>Add Employee</h2>
                     </div>
                     <p>Please fill this form and submit to add employee record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
