@@ -203,7 +203,7 @@ function get_options($select) {
               <li><a href="welcome.php">Home</a></li>
               <li><a href="index.php">Employee</a></li>
               <li><a href="input.php">Add Record</a></li>
-              <li><a href="">Setting</a></li>
+              <li><a href="daily_tr.php">Transaction</a></li>
               <li><a href="reset-password.php">Reset Password</a></li>
               <li><a href="logout.php">Log Out</a></li>
             </ul>
