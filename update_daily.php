@@ -167,22 +167,22 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         </div>
                          <div class="form-group <?php echo (!empty($cassh_err)) ? 'has-error' : ''; ?>">
                             <label>Cash</label>
-                            <input type="tel" name="cassh" class="form-control" value="<?php echo $cassh; ?>">
+                            <input type="tel" name="cassh" class="form-control" value="<?php echo $cassh; ?>" autocomplete="off">
                             <span class="help-block"><?php echo $cassh_err;?></span>
                         </div>
                          <div class="form-group <?php echo (!empty($card_err)) ? 'has-error' : ''; ?>">
                             <label>Card</label>
-                            <input type="tel" name="card" class="form-control" value="<?php echo $card; ?>">
+                            <input type="tel" name="card" class="form-control" value="<?php echo $card; ?>" autocomplete="off">
                             <span class="help-block"><?php echo $card_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($tip_err)) ? 'has-error' : ''; ?>">
                             <label>Tip</label>
-                            <input type="tel" name="tip" class="form-control" value="<?php echo $tip; ?>">
+                            <input type="tel" name="tip" class="form-control" value="<?php echo $tip; ?>"autocomplete="off">
                             <span class="help-block"><?php echo $tip_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($supply_err)) ? 'has-error' : ''; ?>">
                             <label>Supply</label>
-                            <input type="tel" name="supply" class="form-control" value="<?php echo $supply; ?>">
+                            <input type="tel" name="supply" class="form-control" value="<?php echo $supply; ?>" autocomplete="off">
                             <span class="help-block"><?php echo $supply_err;?></span>
                         </div>
 

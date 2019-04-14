@@ -145,30 +145,17 @@ function get_options($select) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta http-equiv="pragma" content="no-cache" />   
   <title>Add Record</title>
   <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
   <script src="/jquery/dist/jquery.min.js"></script>
   <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="/jquery/dist/jquery.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-  <script>
-    $(document).ready(function(){
-      var date_input=$('input[name="date"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy-mm-dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-        clearBtn: true,
-        toggleActive: true
-      };
-      date_input.datepicker(options);
-    })
-  </script>
+  <script type="text/javascript" src="/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css"/>
+  
 
   <style type="text/css">
     body{ font: 14px sans-serif; text-align: left; }
@@ -185,8 +172,8 @@ function get_options($select) {
       margin-top: 0;
     }
     .btn-success {
-            margin-right: 5px;
-        }
+      margin-right: 5px;
+    }
 
   </style>
 </head>
@@ -213,9 +200,9 @@ function get_options($select) {
             </ul>
           </div>
         </div>
-          <a href="daily_tr.php" class="btn btn-success pull-right" >
-            <i class="glyphicon glyphicon-list-alt" style="font-size:12px;"></i>
-          </a>
+        <a href="daily_tr.php" class="btn btn-success pull-right" >
+          <i class="glyphicon glyphicon-list-alt" style="font-size:12px;"></i>
+        </a>
       </div>
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group">
@@ -228,23 +215,23 @@ function get_options($select) {
             <span class="error"><?php echo $nameErr;?></span>
             <br>
             <label for="input_cash">Cash</label>
-            <input type="tel" id="input_cash" name="cash" class="form-control" value="<?php echo $cash;?>">
+            <input type="tel" id="input_cash" name="cash" class="form-control" value="<?php echo $cash;?>" autocomplete="off">
             <span class="error"><?php echo $cashErr;?></span>
             <br>
             <label for="input_card">Card</label>
-            <input type="tel" id="input_card" name="card" class="form-control" value="<?php echo $card;?>">
+            <input type="tel" id="input_card" name="card" class="form-control" value="<?php echo $card;?>" autocomplete="off">
             <span class="error"><?php echo $cardErr;?></span>
             <br>
             <label for="input_tip">Tip</label>
-            <input type="tel" name="tip" id="input_tip" class="form-control" value="<?php echo $tip;?>">
+            <input type="tel" name="tip" id="input_tip" class="form-control" value="<?php echo $tip;?>" autocomplete="off">
             <span class="error"><?php echo $tipErr;?></span>
             <br>
             <label for="input_supply">Supply</label>
-            <input type="tel" name="supply" id="input_supply" class="form-control" value="<?php echo $supply;?>">
+            <input type="tel" name="supply" id="input_supply" class="form-control" value="<?php echo $supply;?>" autocomplete="off">
             <span class="error"><?php echo $supplyErr;?></span>
             <br>
             <label for="date">Date</label>
-            <input type="text" name="date" class="form-control" id="date" value="<?php echo $date;?>">
+            <input type="date" name="date" class="form-control"  value="<?php echo $date;?>" autocomplete="off">
             <span class="error"><?php echo $dateErr;?></span>
             <br>
             <input type="submit" name="submit" class="btn btn-primary" value="Save">

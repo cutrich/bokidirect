@@ -20,22 +20,9 @@ require_once "config.php";
     <script src="/jquery/dist/jquery.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <script>
-    $(document).ready(function(){
-      var date_input=$('input[name="date"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy-mm-dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-        orientation: "bottom"
-      };
-      date_input.datepicker(options);
-    })
-</script>
+    <script type="text/javascript" src="/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css"/>
+
 <style type="text/css">
     input[type=text] {
       width: 50%;
@@ -101,7 +88,7 @@ table tr td:last-child a{
         </div>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
           <div class="input-group">
-             <input type="text" name="date" class="form-control" id="date" value="<?php echo $date;?>">
+             <input type="date" name="date" class="form-control" id="date" value="<?php echo $date;?>" autocomplete="off">
 
              <span class="input-group-btn errr" ><?php echo $dateErr;?>
              <input type="submit" name="submit" class="btn btn-primary" value="Go">
@@ -123,53 +110,94 @@ table tr td:last-child a{
      $date = date('Y-m-d',strtotime($_POST['date']));
  }
 
+$name_="";                    // Close connection
+$sql1 = "SELECT * FROM ".$_SESSION["username"]."_employee";
+          if($result1 = mysqli_query($link, $sql1)){
+            if(mysqli_num_rows($result1) > 0){
+                echo "<table class='table table-bordered table-striped'>";
+                echo "<thead>";
+                echo "<tr>";
+                echo "<th>#</th>";
+                echo "<th>Name</th>";
+                echo "<th>Cash</th>";
+                echo "<th>Card</th>";
+                echo "<th>Tip</th>";
+                echo "<th>Supply</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+                while($row1 = mysqli_fetch_array($result1)){
+                    echo "<tr>";
+                    echo "<td>" . $row1['id'] . "</td>";
+                    echo "<td>" . $row1['employee'] . "</td>";
+                    $sql2 = "SELECT SUM(booki_cash)as sumcash FROM booki_tbl WHERE booki_date='$date' and booki_employee='".$row1['employee']."'";
+                      if ($result2 = mysqli_query($link, $sql2)) {
+                        if (mysqli_num_rows($result2) > 0){
+                           $val_cash = mysqli_fetch_array ($result2);
+                        } else{
+                          $val_cash['sumcash']=0;
+                        }
 
+                        # code...
+                      } else{
+                        echo "ERROR";
+                      }
+                      $sql2 = "SELECT SUM(booki_card)as sumcash FROM booki_tbl WHERE booki_date='$date' and booki_employee='".$row1['employee']."'";
+                      if ($result2 = mysqli_query($link, $sql2)) {
+                        if (mysqli_num_rows($result2) > 0){
+                           $val_card = mysqli_fetch_array ($result2);
+                        } else{
+                          $val_card['sumcash']=0;
+                        }
 
-                    // Attempt select query execution
- $sql = "SELECT * FROM booki_tbl INNER JOIN users ON booki_tbl.id = users.id WHERE users.username ='$session_user' AND booki_date = '$date'";
- if($result = mysqli_query($link, $sql)){
-    if(mysqli_num_rows($result) > 0){
-        echo "<table class='table table-bordered table-striped' width='50%'>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>#</th>";
-        echo "<th>Name</th>";
-        echo "<th>$$$</th>";
-        echo "<th>Tip</th>";
-        echo "<th>Sup</th>";
-        echo "<th>Sum</th>";
-        echo "<th>Action</th>";
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-        while($row = mysqli_fetch_array($result)){
-            echo "<tr>";
-            echo "<td>" . $row['booki_id'] . "</td>";
-            echo "<td>" . $row['booki_employee'] . "</td>";
-            $total_money = $row['booki_cash'] + $row['booki_card'];
-            echo "<td>" . $total_money . "</td>";
-            echo "<td>" . $row['booki_tip'] . "</td>";
-            echo "<td>" . $row['booki_supply'] . "</td>";
-            $total_cash = $total_money + $row['booki_tip'] - $row['booki_supply'];
-            echo "<td>" . $total_cash . "</td>";
-            echo "<td>";
-            echo "<a href='update_daily.php?id=". $row['booki_id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-            echo "</td>";
-            echo "</tr>";
-        }
-        echo "</tbody>";                            
-        echo "</table>";
+                        # code...
+                      } else{
+                        echo "ERROR";
+                      }
+                      $sql2 = "SELECT SUM(booki_tip)as sumcash FROM booki_tbl WHERE booki_date='$date' and booki_employee='".$row1['employee']."'";
+                      if ($result2 = mysqli_query($link, $sql2)) {
+                        if (mysqli_num_rows($result2) > 0){
+                           $val_tip = mysqli_fetch_array ($result2);
+                        } else{
+                          $val_tip['sumcash']=0;
+                        }
+
+                        # code...
+                      } else{
+                        echo "ERROR";
+                      }
+                      $sql2 = "SELECT SUM(booki_supply)as sumcash FROM booki_tbl WHERE booki_date='$date' and booki_employee='".$row1['employee']."'";
+                      if ($result2 = mysqli_query($link, $sql2)) {
+                        if (mysqli_num_rows($result2) > 0){
+                           $val_supply = mysqli_fetch_array ($result2);
+                        } else{
+                          $val_supply['sumcash']=0;
+                        }
+
+                        # code...
+                      } else{
+                        echo "ERROR";
+                      }
+                    echo "<td>". $val_cash['sumcash'] ."</td>";
+                    echo "<td>". $val_card['sumcash'] ."</td>";
+                    echo "<td>". $val_tip['sumcash'] ."</td>";
+                    echo "<td>". $val_supply['sumcash'] ."</td>";
+                    echo "</tr>";
+                }
+                echo "</tbody>";
+
+                echo "</table>";
                             // Free result set
-        mysqli_free_result($result);
-    } else{
-        echo "<p class='lead'><em>No records were found.</em></p>";
-    }
-} else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-}
+                mysqli_free_result($result1);
+            } else{
+                echo "<p class='lead'><em>No records were found.</em></p>";
+            }
+        } else{
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+        }
 
                     // Close connection
-mysqli_close($link);
+        mysqli_close($link);
 }
 ?>
 </div>
