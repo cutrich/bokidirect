@@ -95,11 +95,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = test_input($_POST["date"]);
     // check if name only contains letters and whitespace
     if (!is_numeric($date)) {
-      $date = $_POST["date"];
+      $date = date('Y-m-d',strtotime($_POST['date']));
     } else {
-    	$date = $_POST["date"];
+    	$date = date('Y-m-d',strtotime($_POST['date']));
     }
   }
+
   if(empty($nameErr) && empty($cardErr) && empty($cashErr) && empty($supplyErr) && empty($tipErr) && empty($dateErr)){
       $session_user= $_SESSION["username"];
       $sql = "INSERT INTO booki_tbl (id, booki_employee, booki_cash, booki_card, booki_tip, booki_supply, booki_date) VALUES ((SELECT id FROM users WHERE username = '$session_user'),'$name','$cash', '$card', '$tip','$supply','$date')";
@@ -158,7 +159,7 @@ function get_options($select) {
       var date_input=$('input[name="date"]'); //our date input has the name "date"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
-        format: 'mm.dd.yyyy',
+        format: 'yyyy-mm-dd',
         container: container,
         todayHighlight: true,
         autoclose: true,
@@ -183,6 +184,9 @@ function get_options($select) {
     .page-header h2{
       margin-top: 0;
     }
+    .btn-success {
+            margin-right: 5px;
+        }
 
   </style>
 </head>
@@ -209,6 +213,9 @@ function get_options($select) {
             </ul>
           </div>
         </div>
+          <a href="daily_tr.php" class="btn btn-success pull-right" >
+            <i class="glyphicon glyphicon-list-alt" style="font-size:12px;"></i>
+          </a>
       </div>
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group">
