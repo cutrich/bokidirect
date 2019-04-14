@@ -1,35 +1,25 @@
 <?php
-
 session_start();
-
-
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-
 // Include config file
 require_once "config.php";
-
 // define variables and set to empty values
 $nameErr = $cardErr = $cashErr = $tipErr = $supplyErr = "";
 $name = $card = $cash = $tip = $supply = $date = "";
 $selected ="";
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if($_POST['submit']=='Clear'){
    $card = $cash = $tip = $supply = $date = "";
   }
-
   if($_POST['submit'] =='Save'){
   if (isset($_POST["name"]))
     {
       $selected = $_POST["name"];
     }
-
-
   if (empty($_POST["name"])) {
     $name = "0";
   } else {
@@ -38,10 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!is_numeric($name)) {
       $name = $_POST["name"];
     } else {
-    	$name = $_POST["name"];
+      $name = $_POST["name"];
     }
   }
-
   if (empty($_POST["card"])) {
     $card = 0;
   } else {
@@ -50,10 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!is_numeric($card)) {
       $cardErr = "Number Only";
     } else {
-    	$card = $_POST["card"];
+      $card = $_POST["card"];
     }
   }
-
   if (empty($_POST["cash"])) {
     $cash = 0;
   } else {
@@ -62,10 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!is_numeric($cash)) {
       $cashErr = "Number Only";
     } else {
-    	$cash = $_POST["cash"];
+      $cash = $_POST["cash"];
     }
   }
-
   if (empty($_POST["tip"])) {
     $tip = 0;
   } else {
@@ -74,10 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!is_numeric($tip)) {
       $tipErr = "Number Only";
     } else {
-    	$tip = $_POST["tip"];
+      $tip = $_POST["tip"];
     }
   }
-
   if (empty($_POST["supply"])) {
     $supply = 0;
   } else {
@@ -86,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!is_numeric($supply)) {
       $supplyErr = "Number Only";
     } else {
-    	$supply = $_POST["supply"];
+      $supply = $_POST["supply"];
     }
   }
   if (empty($_POST["date"])) {
@@ -97,14 +83,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!is_numeric($date)) {
       $date = date('Y-m-d',strtotime($_POST['date']));
     } else {
-    	$date = date('Y-m-d',strtotime($_POST['date']));
+      $date = date('Y-m-d',strtotime($_POST['date']));
     }
   }
-
   if(empty($nameErr) && empty($cardErr) && empty($cashErr) && empty($supplyErr) && empty($tipErr) && empty($dateErr)){
       $session_user= $_SESSION["username"];
       $sql = "INSERT INTO booki_tbl (id, booki_employee, booki_cash, booki_card, booki_tip, booki_supply, booki_date) VALUES ((SELECT id FROM users WHERE username = '$session_user'),'$name','$cash', '$card', '$tip','$supply','$date')";
-
       if (mysqli_query($link, $sql)) {
         $card = $cash = $tip = $supply = "";
         $msg= "New record created successfully";
@@ -112,24 +96,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
       }
-
-
   }
 }
 } // post function
-
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
 }
-
 function get_options($select) {
     require "config.php";
     $sql = "SELECT * FROM ".$_SESSION["username"]."_employee";
     $result = mysqli_query($link,$sql) or die ("Bad Query; $sql");
-
     while($name1 = mysqli_fetch_array($result)) {
       if ($select==$name1['employee']) {
         echo "<option value='".$name1['employee']."' selected>".$name1['employee']."</option>";
@@ -148,39 +127,26 @@ function get_options($select) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <meta http-equiv="pragma" content="no-cache" />   
   <title>Add Record</title>
+      <link rel="stylesheet" href="/css/style.css">
+
   <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
   <script src="/jquery/dist/jquery.min.js"></script>
   <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="/jquery/dist/jquery.js"></script>
-  <script type="text/javascript" src="/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-  <link rel="stylesheet" href="/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css"/>
+
   
 
   <style type="text/css">
-    body{ font: 14px sans-serif; text-align: left; }
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
-      padding-right: 0px;
-    }
-    .dropdown-menu {
-      font-size: 20px;
-    }
+    body{ font: 14px sans-serif; text-align: left; max-width: 500px;}
     .page-header h2{
       margin-top: 0;
     }
-    .btn-success {
-      margin-right: 5px;
-    }
-
+ 
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="col-sm-4"> </div>
-    <div class="col-sm-4">
+
       <div class="page-header clearfix">
         <h2 class="pull-left"> Add Record </h2>
 
@@ -239,13 +205,7 @@ function get_options($select) {
           </div>
         </div>
       </form>
-    </div>
-
-    <div class="col-sm-4">
-
-    </div>
-
-  </div>
+   
 
 
 

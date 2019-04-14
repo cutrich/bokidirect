@@ -139,22 +139,21 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 <html lang="en">
 <head>
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Update Record</title>
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
     <script src="/jquery/dist/jquery.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <style type="text/css">
         body{ font: 14px sans-serif; text-align: left; }
+          input[type=text], input[type=tel], input[date]{
+                width: 50%;
+          }
     </style>
 </head>
 <body>
-    <div class="container">
-              <div class="row">
-                <div class="col-sm-4">
-
-                </div>
-                <div class="col-sm-4">
+   
                     <div class="page-header">
                         <h2>Update Record</h2>
                     </div>
@@ -190,10 +189,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         <input type="submit" class="btn btn-primary" value="Save">
                         <a href="daily_tr.php" class="btn btn-default">Cancel</a>
                     </form>
-                </div>
-                <div class="col-sm-4"></div>
-            </div>        
-        </div>
-    </div>
+                
+        
 </body>
 </html>

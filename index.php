@@ -28,39 +28,14 @@ require_once "config.php";
         });
     </script>
     <style type="text/css">
-        body{ font: 14px sans-serif; text-align: center; }
 
 .page-header h2{
     margin-top: 0;
 }
-
-.dropdown {
-            position: relative;
-            display: inline-block;
-            vertical-align: middle;
-            padding-right: 0px;
-        }
-.dropdown-menu {
-      font-size: 20px;
-        }
-.btn-success {
-            margin-right: 5px;
-        }
-.table tbody tr {
-            font-size: 15px;
-            text-align: left;
-
-        }
-
-table tr td:last-child a{
-    margin-right: 15px;
-}
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="col-sm-4"> </div>
-        <div class="col-sm-4">
+
             <div class="page-header clearfix">
                 <h2 class="pull-left">Employees </h2>
                 
@@ -73,7 +48,6 @@ table tr td:last-child a{
                         <ul class="dropdown-menu pull-right">
                           <li><a href="welcome.php">Home</a></li>
                           <li><a href="index.php">Employee</a></li>
-                          <li><a href="input.php">Add Record</a></li>
                           <li><a href="daily_tr.php">Transaction</a></li>
                           <li><a href="reset-password.php">Reset Password</a></li>
                           <li><a href="logout.php">Log Out</a></li>
@@ -124,9 +98,7 @@ table tr td:last-child a{
                     // Close connection
         mysqli_close($link);
         ?>
-    </div>
-    <div class="col-sm-4"></div>
-</div>        
+           
 
 </body>
 </html>

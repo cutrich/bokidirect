@@ -8,6 +8,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 require_once "config.php";
+$_SERVER["REQUEST_METHOD"] == "POST";
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+}
 
 ?>
 
@@ -17,29 +24,21 @@ require_once "config.php";
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
   <title>Add Record</title>
+    <link rel="stylesheet" href="/css/style.css">
+
   <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
   <script src="/jquery/dist/jquery.min.js"></script>
   <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="/jquery/dist/jquery.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-  <script>
-    $(document).ready(function(){
-      var date_input=$('input[name="date"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy-mm-dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-        clearBtn: true,
-        toggleActive: true
-      };
-      date_input.datepicker(options);
-    })
-  </script>
+
+ 
     <style type="text/css">
+     
+        input[type=text] {
+      width: 50%;
+
+    }
         .page-header h2{
             margin-top: 0;
             margin-bottom: 0;
@@ -51,26 +50,6 @@ require_once "config.php";
             margin-top: 0;
             margin-bottom: 0;
         }
-        table tr td:last-child a{
-            margin-right: 15px;
-        }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            vertical-align: middle;
-            padding-right: 0px;
-        }
-        .dropdown-menu {
-      font-size: 20px;
-        }
-        .btn-success {
-            margin-right: 5px;
-        }
-        .table tbody tr {
-            font-size: 14px;
-            text-align: left;
-
-        }
     </style>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -79,9 +58,7 @@ require_once "config.php";
     </script>
 </head>
 <body>
-    <div class="container">
-        <div class="col-sm-4"> </div>
-        <div class="col-sm-4">
+    
             <div class="page-header clearfix">
                 
                 
@@ -94,7 +71,6 @@ require_once "config.php";
                         <ul class="dropdown-menu pull-right">
                           <li><a href="welcome.php">Home</a></li>
                           <li><a href="index.php">Employee</a></li>
-                          <li><a href="input.php">Add Record</a></li>
                           <li><a href="daily_tr.php">Transaction</a></li>
                           <li><a href="reset-password.php">Reset Password</a></li>
                           <li><a href="logout.php">Log Out</a></li>
@@ -107,13 +83,8 @@ require_once "config.php";
               <a href="" class="btn btn-success pull-right">W</a>
               <a href="report_daily.php" class="btn btn-success pull-right">D</a>
           </div>
-          
-
-
-          
           <?php
                     // Include config file
-          require_once "config.php";
           $session_user= $_SESSION["username"];
 
                     // Attempt select query execution
@@ -126,11 +97,12 @@ require_once "config.php";
                 echo "<tr>";
                 echo "<th>#</th>";
                 echo "<th>Name</th>";
-                echo "<th>$$$</th>";
+                echo "<th>Cash</th>";
+                echo "<th>Card</th>";
                 echo "<th>Tip</th>";
-                echo "<th>Sup</th>";
-                echo "<th>Sum</th>";
-                echo "<th>Action</th>";
+                echo "<th>Supply</th>";
+                echo "<th>Total</th>";
+                echo "<th>Edit</th>";
                 echo "</tr>";
                 echo "</thead>";
                 echo "<tbody>";
@@ -138,11 +110,11 @@ require_once "config.php";
                     echo "<tr>";
                     echo "<td>" . $row['booki_id'] . "</td>";
                     echo "<td>" . $row['booki_employee'] . "</td>";
-                    $total_money = $row['booki_cash'] + $row['booki_card'];
-                    echo "<td>" . $total_money . "</td>";
+                    echo "<td>" . $row['booki_cash'] . "</td>";
+                    echo "<td>" . $row['booki_card'] . "</td>";
                     echo "<td>" . $row['booki_tip'] . "</td>";
                     echo "<td>" . $row['booki_supply'] . "</td>";
-                    $total_cash = $total_money + $row['booki_tip'] - $row['booki_supply'];
+                    $total_cash = $row['booki_cash'] + $row['booki_card'] + $row['booki_tip'] - $row['booki_supply'];
                     echo "<td>" . $total_cash . "</td>";
                     echo "<td>";
                     echo "<a href='update_daily.php?id=". $row['booki_id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
@@ -163,9 +135,5 @@ require_once "config.php";
                     // Close connection
         mysqli_close($link);
         ?>
-    </div>
-    <div class="col-sm-4"></div>
-</div>        
-
 </body>
 </html>
