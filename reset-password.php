@@ -75,13 +75,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css"> 
     <style type="text/css">
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
+   
          .back {
-          background: #e2e2e2;
-          width: 100%;
+          background: #fff;
+          width: 50%;
           position: absolute;
           top: 0;
           bottom: 0;
@@ -100,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           max-height: 100%;
           overflow: auto;
           padding: 1em 2em;
-          border-bottom: 2px solid #ccc;
+          
           display: table;
       }
       div.content {

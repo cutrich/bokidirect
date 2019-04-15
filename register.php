@@ -129,8 +129,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .back {
-          background: #e2e2e2;
-          width: 100%;
+          background: #fff;
+          width: 50%;
           position: absolute;
           top: 0;
           bottom: 0;
@@ -150,7 +150,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           max-height: 100%;
           overflow: auto;
           padding: 1em 2em;
-          border-bottom: 2px solid #ccc;
+          
           display: table;
       }
 
