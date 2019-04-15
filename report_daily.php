@@ -158,11 +158,12 @@ if ($result2 = mysqli_query($link, $sql2)) {
 } else{
   echo "ERROR";
 }
+$total_cash= $val_cash['sumcash'] + $val_card['sumcash'] + $val_tip['sumcash'] - $val_supply['sumcash'];
 echo "<td>". $val_cash['sumcash'] ."</td>";
 echo "<td>". $val_card['sumcash'] ."</td>";
 echo "<td>". $val_tip['sumcash'] ."</td>";
 echo "<td>". $val_supply['sumcash'] ."</td>";
-echo "<td>". $val_supply['sumcash'] ."</td>";
+echo "<td>". $total_cash ."</td>";
 echo "</tr>";
 }
 echo "</tbody>";

@@ -37,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      
         input[type=text] {
       width: 50%;
-
     }
         .page-header h2{
             margin-top: 0;
@@ -80,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               
               <a href="input.php" class="btn btn-success pull-right">+</a>
               <a href="" class="btn btn-success pull-right">Y</a>
-              <a href="" class="btn btn-success pull-right">W</a>
+              <a href="report_weekly.php" class="btn btn-success pull-right">W</a>
               <a href="report_daily.php" class="btn btn-success pull-right">D</a>
           </div>
           <?php
