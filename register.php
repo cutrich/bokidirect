@@ -161,7 +161,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   </style>
 </head>
 <body>
-    <<div class="back">
+ 
       <div class="div-center">
         <div class="content">
             <h3>Sign Up</h3>
@@ -196,6 +196,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </form>
         </div>
     </div>
-</div>
 </body>
 </html>

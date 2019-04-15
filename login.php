@@ -91,21 +91,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0" />
     <title>Login</title>
 
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">  
     
     <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .back {
-          background: #fff;
-          width: 50%;
-          position: absolute;
-          top: 0;
-          bottom: 0;
-      }
+        body{ font: 14px sans-serif; text-align: left }
+       
 
       .div-center {
           width: 400px;
@@ -135,7 +129,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-    <div class="back">
       <div class="div-center">
         <div class="content">
           <h3>Login</h3>
@@ -161,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 
       </div>
-  </div>
+ 
 
    
 </body>

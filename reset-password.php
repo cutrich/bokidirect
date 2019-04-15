@@ -111,7 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
 </head>
 <body>
-    <div class="back">
+  
       <div class="div-center">
         <div class="content">
         <h2>Reset Password</h2>
@@ -134,6 +134,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </form>
     		</div> 
 		</div>
-	</div>
+	
 </body>
 </html>
