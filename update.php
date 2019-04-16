@@ -24,18 +24,14 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     $input_name = trim($_POST["name"]);
     if(empty($input_name)){
         $name_err = "Please enter a name.";
-    } elseif(!filter_var($input_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+    } elseif(preg_match("/[^A-Za-z]/", $input_name)){
         $name_err = "Please enter a valid name.";
     } else{
 
         $name = $input_name;
 
     }
-    
-
-
-
-    
+     
     // Check input errors before inserting in database
     if(empty($name_err)){
         // Prepare an update statement

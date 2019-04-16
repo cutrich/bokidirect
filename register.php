@@ -9,13 +9,17 @@ $passcode = "abc";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
+        $str = $_POST["username"];
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
-    } else{
+    } elseif (preg_match("/[^A-Za-z0-9]/", $str)) {
+             $username_err="invalid key";  
+
+} else{
         // Prepare a select statement
-        $sql = "SELECT id FROM users WHERE username = ?";
+       
+       $sql = "SELECT id FROM users WHERE username = ?";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -40,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
         // Close statement
-        mysqli_stmt_close($stmt);
+        mysqli_stmt_close($stmt); 
     }
 
     // Validate password
@@ -139,7 +143,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       .div-center {
           width: 400px;
           height: 400px;
-          background-color: #fff;
+          background-color: #9e9e9e;
           position: absolute;
           left: 0;
           right: 0;

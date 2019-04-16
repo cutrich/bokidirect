@@ -98,10 +98,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">  
     
     <style type="text/css">
-        body{ font: 14px sans-serif; text-align: left }
-       
+        body{ font: 14px sans-serif; text-align: lef;}    
+      .back {
+          background: #9e9e9e;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+      }
 
-      .div-center {
+  .div-center {
           width: 400px;
           height: 400px;
           background-color: #fff;
@@ -126,8 +132,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
 </head>
 <body>
-
-
 
       <div class="div-center">
         <div class="content">
@@ -154,7 +158,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 
       </div>
- 
 
    
 </body>
